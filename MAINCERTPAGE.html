@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Certificates</title>
+
+  <!-- Page identifier for nav active state -->
+  <meta name="page-name" content="certificates">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="HOME.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="header-inner container">
+      <div class="brand" aria-hidden="true">
+        <span class="brand-main2"> KA </span>
+        <span class="brand-main">KURT FERDINAND R. AQUINO</span>
+      </div>
+
+      <nav class="nav" role="navigation" aria-label="Main">
+        <ul>
+          <li><a class="nav-btn" data-target="home" href="HOMEPAGE.html">Home</a></li>
+          <li><a class="nav-btn" data-target="skills" href="SKILLSPAGE.html">Skills</a></li>
+          <li><a class="nav-btn" data-target="projects" href="PROJECTSPAGE.html">Projects</a></li>
+          <li><a class="nav-btn" data-target="certificates" href="MAINCERTPAGE.html">Certificates</a></li>
+          <li><a class="nav-btn" data-target="contacts" href="CONTACTSPAGE.html">Contacts</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+ <!-- Main content -->
+  <main class="certificates-page container">
+    <h2>My Certificates</h2>
+
+    <div class="certificates-grid">
+      <!-- Certificate Card 1 -->
+      <div class="certificate-item">
+        <div class="certificate-card">
+          <img src="pics/Screenshot 2025-11-21 230740.png" alt="Certificate 1">
+          <p>COMPUTER HARDWARE BASICS</p>
+        </div>
+        <button class="view-btn">View</button>
+      </div>
+
+      <!-- Certificate Card 2 -->
+      <div class="certificate-item">
+        <div class="certificate-card">
+          <img src="pics/Screenshot 2025-11-21 230802.png" alt="Certificate 2">
+          <p>EFFECTIVE SPEAKING AND LISTENING SKILLS</p>
+        </div>
+        <button class="view-btn">View</button>
+      </div>
+
+      <!-- Certificate Card 3 -->
+      <div class="certificate-item">
+        <div class="certificate-card">
+          <img src="pics/Screenshot 2025-11-21 230818.png" alt="Certificate 3">
+          <p>IMPACTFUL WRITING SKILLS</p>
+        </div>
+        <button class="view-btn">View</button>
+      </div>
+
+      <!-- Placeholders for Certificates 4-8 -->
+      <div class="certificate-item"><div class="certificate-card"><img src="pics/certificate4.png" alt=""><p>Certificate 4</p></div><button class="view-btn">View</button></div>
+      <div class="certificate-item"><div class="certificate-card"><img src="pics/certificate5.png" alt=""><p>Certificate 5</p></div><button class="view-btn">View</button></div>
+      <div class="certificate-item"><div class="certificate-card"><img src="pics/certificate6.png" alt=""><p>Certificate 6</p></div><button class="view-btn">View</button></div>
+      <div class="certificate-item"><div class="certificate-card"><img src="pics/certificate7.png" alt=""><p>Certificate 7</p></div><button class="view-btn">View</button></div>
+      <div class="certificate-item"><div class="certificate-card"><img src="pics/certificate8.png" alt=""><p>Certificate 8</p></div><button class="view-btn">View</button></div>
+    </div>
+
+    <!-- Modal (dynamic, single) -->
+    <div id="certificateModal" class="modal">
+      <div class="modal-content">
+        <img id="modalImage" src="" alt="Certificate">
+        <div class="modal-texts">
+        <h3 id="modalTitle">Certificate Name</h3>
+        <p id="modalDescription">Certificate description goes here.</p>
+        </div>
+      </div>
+      <button id="modalClose" class="modal-back-btn">Back</button>
+    </div>
+  </main>
+
+
+  <script src="HOME.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('certificateModal');
+      const modalImage = document.getElementById('modalImage');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalDescription = document.getElementById('modalDescription');
+      const modalClose = document.getElementById('modalClose');
+
+      const certificates = [
+        {
+          img: "pics/Screenshot 2025-11-21 230740.png",
+          title: "COMPUTER HARDWARE BASICS",
+          desc: "I completed Cisco’s Computer Hardware Basics certification, which provided hands-on knowledge of computer parts, hardware troubleshooting, and system maintenance. This course helped me build strong technical fundamentals that I can apply to real-world tasks and problem-solving. It also expanded my understanding of the hardware side of digital and creative work"
+        },
+        {
+          img: "pics/Screenshot 2025-11-21 230802.png",
+          title: "EFFECTIVE SPEAKING AND LISTENING SKILLS",
+          desc: "I completed Wadhwani’s training on Effective Speaking and Listening Skills, where I learned how to communicate clearly, confidently, and professionally in different situations. The course helped me develop active listening techniques and improve how I express ideas with purpose and clarity. These skills strengthened my ability to collaborate, present, and connect with others effectively."
+        },
+        {
+          img: "pics/Screenshot 2025-11-21 230818.png",
+          title: "IMPACTFUL WRITING SKILLS",
+          desc: "I finished Wadhwani’s Impactful Writing Skills course, which enhanced my ability to write clearly, professionally, and with intention. Through the program, I learned how to structure messages, improve clarity, and communicate ideas in a way that resonates with the reader. This training strengthened my writing for academic, professional, and creative work."
+        },
+        { img: "", title: "Certificate Name", desc: "Description will be added later." },
+        { img: "", title: "Certificate Name", desc: "Description will be added later." },
+        { img: "", title: "Certificate Name", desc: "Description will be added later." },
+        { img: "", title: "Certificate Name", desc: "Description will be added later." },
+        { img: "", title: "Certificate Name", desc: "Description will be added later." }
+      ];
+
+      // Attach click events to each certificate "View" button
+      const certificateButtons = document.querySelectorAll('.certificate-item .view-btn');
+      certificateButtons.forEach((btn, index) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const cert = certificates[index];
+          modalImage.src = cert.img;
+          modalTitle.textContent = cert.title;
+          modalDescription.textContent = cert.desc;
+          modal.classList.add('open');
+        });
+      });
+
+      // Close modal on Back button
+      modalClose.addEventListener('click', () => {
+        modal.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>

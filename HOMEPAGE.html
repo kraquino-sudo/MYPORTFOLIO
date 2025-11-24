@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Home</title>
+
+  <!-- Page identifier for nav active state -->
+  <meta name="page-name" content="home">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="HOME.css">
+</head>
+<body>
+  <!-- Header (color: #FFF1EB) -->
+  <header class="site-header" role="banner">
+    <div class="header-inner container">
+      <div class="brand" aria-hidden="true">
+        <!-- Brand text exactly like PDF (adjust text if your PDF shows different) -->
+         <span class="brand-main2"> KA </span>
+        <span class="brand-main">KURT FERDINAND R. AQUINO</span>
+      </div>
+
+      <nav class="nav" role="navigation" aria-label="Main">
+        <ul>
+          <li><a class="nav-btn" data-target="home" href="HOMEPAGE.html">Home</a></li>
+          <li><a class="nav-btn" data-target="skills" href="SKILLSPAGE.html">Skills</a></li>
+          <li><a class="nav-btn" data-target="projects" href="PROJECTSPAGE.html">Projects</a></li>
+          <li><a class="nav-btn" data-target="certificates" href="MAINCERTPAGE.html">Certificates</a></li>
+          <li><a class="nav-btn" data-target="contacts" href="CONTACTSPAGE.html">Contacts</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+ 
+
+  <!-- Main hero area (background: #F8E7E0) -->
+   
+  <main class="hero" role="main">
+    <div class="container hero-grid">
+
+        <aside class="hero-visual" aria-hidden="true">
+        <img class="image-placeholder" src="pics\88a09403-2b72-42df-8981-72019d252089.jpg" alt="">
+
+      <!-- Left: text column -->
+      <section class="intro" aria-labelledby="hero-heading">
+    
+        <p class="short-intro1">Let Me Introduce Myself</p>
+        <p class="short-intro2">My name is Kurt Aquino. I am 20 years old and </p>
+        <p class="short-intro2">currently studying at City College of Calamba. </p>
+
+        <!-- Play button only (no labels) — black circular button as in PDF -->
+        <div class="play-wrap">  
+          <button id="playBtn" class="play-btn" aria-label="Open video"></button>
+        </div>
+      </section>
+      
+       
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer (color: #FFF1EB). Keep minimal to match PDF; remove if PDF has none. -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <!-- Leave empty or add the exact footer content if present in PDF -->
+    </div>
+  </footer>
+
+  <!-- Video modal overlay (hidden by default) -->
+  <div id="videoModal" class="modal" aria-hidden="true" role="dialog" aria-label="Video">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-panel" role="document" aria-modal="true">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+
+      <!-- Video element: leave src empty for you to add your own uploaded video -->
+      <video id="introVideo" controls playsinline preload="metadata">
+        <source src="pics\INTRO.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="HOME.js" defer></script>
+</body>
+</html>

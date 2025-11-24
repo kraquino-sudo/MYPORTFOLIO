@@ -1,0 +1,619 @@
+/* Root colors and base */
+:root{
+  --bg: #F8E7E0;       /* page background per your instruction */
+  --header-footer: #FFF1EB; /* header & footer */
+  --text: #0a0a0a;
+  --muted: #6b6b6b;
+  --accent: #111111;   /* active nav / accent (matches black play button) */
+  --max-width: 1224px; /* base width from extracted image */
+}
+
+/* Reset & base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.4;
+}
+
+/* Container */
+.container{
+  width: calc(100% - 2rem);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* Header */
+.site-header{
+  background: var(--header-footer);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 20px 0;
+}
+
+/* Brand text uses Space Mono */
+.brand-main2{
+  font-weight:500;
+  font-size:24px;
+  color:black;
+  margin-right: 30px;
+  background-color: #EAA9A9;
+  border-radius: 50%;
+  width: 260px;
+  height: 100%;
+  padding: 9px;
+}
+.brand-main{
+  font-family: "Space Mono", monospace;
+  font-weight:500;
+  font-size:21px;
+  color:var(--text);
+}
+
+/* Nav as button-like items (match PDF: minimal, pill-like) */
+.nav ul{
+  display:flex;
+  gap:12px;
+  list-style:none;
+  margin:0;
+  padding:0;
+  align-items:center;
+}
+.nav-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top: 30px;
+  padding:8px 8px;
+  text-decoration:none;
+  font-weight:500;
+  font-size:22px;
+  color:black;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: background-color 150ms ease, color 150ms ease;
+  font-family: "Space Mono", monospace;
+}
+.nav-btn:hover{
+  cursor:pointer;
+  opacity:0.95;
+}
+.nav-btn.active{
+  background: none;
+  color: #946053;
+  border-color: none;
+}
+
+/* Hero layout — responsive grid (left text, right image) */
+.hero{
+    margin-right: 50px;
+    padding: 48px 0;
+}
+.hero-grid{
+  display:grid;
+  gap: 150px;
+  align-items:center;
+}
+
+/* Intro column (typography tuned to match PDF visuals) */
+.headline{
+  font-family: "Space Mono", monospace;
+  font-size: clamp(28px, 4vw, 44px);
+  margin: 0px 0 6px 0;
+  letter-spacing: -0.5px;
+}
+.name{
+  color: var(--text);
+}
+.short-intro1{
+  margin:0 0px 40px 50px;
+  max-width: 60ch;
+  color:#AD8181;
+  font-size:36px;
+  text-align: center;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.short-intro2{
+  margin:0 0px 10px 50px;
+  max-width: 60ch;
+  color:#AD8181;
+  font-size:32px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+/* Play button container (only button, no text) */
+.play-wrap{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top: 50px;
+  margin-left:320px;
+  
+}
+.play-btn{
+  width:120px;
+  height:64px;
+  border-radius:15px;
+  background: black;
+  border: none;
+  display:inline-grid;
+  place-items:center;
+  cursor:pointer;
+}
+.play-btn::before{
+  /* white triangle centered like a play icon */
+  content: "";
+  display:block;
+  width:5px;
+  height:2px;
+  border-left: 14px solid #fff;
+  border-top: 9.5px solid transparent;
+  border-bottom: 9.5px solid transparent;
+  transform: translateX(3px);
+}
+
+/* Image placeholder — intentionally empty (dashed border to indicate area) */
+.hero-visual{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.image-placeholder{
+  width:100%;
+  max-width:350px;
+  height:100%;
+  border-radius:12px;
+  background: linear-gradient(180deg, #fff, #fff);
+  border: 1px dashed rgba(0,0,0,0.06); /* subtle placeholder border to match PDF's emptiness */
+}
+
+/* Footer */
+.site-footer{
+  background: var(--header-footer);
+  padding: 18px 0;
+  margin-top: 36px;
+}
+
+/* Modal styling (small centred panel) */
+.modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:60;
+}
+.modal.open{ display:flex; }
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,0.55);
+}
+.modal-panel{
+  position:relative;
+  z-index:80;
+  width: min(760px, 92%);
+  border-radius:10px;
+  padding: 12px;
+  background: #000; /* dark panel for video */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  max-width: 1400px;
+  width: 100%;
+  height: auto;
+
+}
+.modal-panel video{
+  width:100%;
+  height:auto;
+  border-radius:8px;
+  background:#000;
+}
+.modal-close{
+  position:absolute;
+  right:0px;
+  top:6px;
+  font-size:24px;
+  color: rgb(0, 0, 0);
+  cursor:pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width:980px){
+  .hero-grid{
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .image-placeholder{
+    width:100%;
+    height:320px;
+  }
+  .header-inner{ padding:14px 0; }
+  .brand-main{ font-size:16px; }
+  .nav ul{ gap:8px; }
+  .nav-btn{ padding:6px 10px; font-size:13px; }
+  .play-btn{ width:56px; height:56px; }
+}
+
+/* Skills Page */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 60px;
+  margin-top: 80px;
+}
+
+/* Skill Card */
+.skill-card {
+  background: #EAA9A9;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, .08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* Skill Image */
+.skill-card img {
+  width: 100%;
+  max-width: 180px;
+  margin: 0 auto 0;
+  border-radius: 12px;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+/* Text Below Image */
+
+.skill-card p {
+  font-size: 21px;
+  color: black;
+  max-width: 300px;
+  margin: 0 auto;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin-bottom: 100px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Projects */
+.projects-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin: 50px 0px;
+  width: 100%;
+  height: auto;
+}
+
+/* Track that slides horizontally */
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+/* Each project card */
+.project-card {         
+  max-width: 800px;   
+  display: flex;
+  background: #EAA9A9;
+  border-radius: 26px;
+  padding: 20px;
+  box-shadow: 6px 6px 12px rgba(0,0,0,0.15);
+  gap: 30px;
+  flex-shrink: 0;
+  margin-left: 200px;
+  margin-right: 100px;
+}
+.project-card li {
+  margin-left:40px; 
+  list-style-type:none;
+}
+
+.project-card img{
+  border-radius: 12px;
+  width: 300px;
+  height: auto;
+  object-fit: cover;
+}
+.project-desc {
+  font-size: 20px;
+  color: black;
+  max-width: 400px;
+  margin-right: 50px;
+  margin-top: 60px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 26px;
+  text-align: justify;
+}
+.project-card h3 {
+  font-size: 28px;
+  margin-right: 10px;
+  margin-top: 40px;
+  margin-bottom: 7px;
+  font-family: "Space Mono", monospace;
+}
+
+/* Carousel buttons */
+/* Minimal carousel buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;   /* no background */
+  border: none;       /* no border */
+  font-size: 32px;    /* arrow size */
+  color: #000;        /* arrow color */
+  cursor: pointer;
+  z-index: 20;
+  padding: 50px;         /* remove padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.carousel-btn:hover {
+  opacity: 0.7;       /* optional hover effect */
+}
+
+.carousel-btn.prev {
+  left: 0;
+}
+
+.carousel-btn.next {
+  right: 0;
+}
+
+/* Responsive: stack images/text on small screens */
+@media (max-width: 900px) {
+  .project-card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project-images {
+    flex-direction: row;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .project-images img {
+    width: 120px;
+    height: 100px;
+  }
+}
+/* Certificates Page */
+.certificates-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 250px); /* 4 columns */
+  grid-template-rows: repeat(2, auto);    /* 2 rows */
+  gap: 40px 20px;                         /* vertical and horizontal gaps */
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.certificate-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center card + button */
+  gap: 12px;           /* spacing between card and button */
+  
+}
+
+.certificate-card {
+  background: #EAA9A9;
+  border-radius: 20px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 4px 4px 12px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 300px;
+
+}
+
+.certificate-card img {
+  width: 100%;
+  max-width: 300px;
+  height:auto;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+.certificate-card p {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 16px;
+  text-align: center;
+  margin: 0;
+}
+
+.view-btn {
+  text-decoration: none;
+  padding: 6px 16px;
+  border-radius: 12px;
+  background-color: #946053;
+  color: #fff;
+  font-weight: 600;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  transition: opacity 0.2s ease;
+}
+
+.view-btn:hover {
+  opacity: 0.8;
+}
+
+/* Responsive: 2x4 grid on medium screens, 1x8 on small screens */
+@media (max-width: 1100px) {
+  .certificates-grid {
+    grid-template-columns: repeat(2, 250px);
+    grid-template-rows: repeat(4, auto);
+  }
+}
+
+@media (max-width: 600px) {
+  .certificates-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, auto);
+  }
+}
+    /* Certificates Grid */
+    .certificates-page h2 {
+      margin-bottom: 30px;
+    }
+    .certificates-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .certificate-item {
+      text-align: center;
+    }
+    .certificate-card {
+      background: #EAA9A9;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .certificate-card img {
+      width: 150px;
+      height: auto;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .view-btn {
+      margin-top: 8px;
+      padding: 6px 12px;
+      background: #946053;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    /* Modal (popup) */
+    .modal {
+      display: none; /* hidden by default */
+      position: absolute;
+      top: 50px; /* leave header visible */
+      left: 0;
+      right: 0;
+      width: 100%;
+      max-width: 1500px;
+      height: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      z-index: 50;
+    }
+    .modal.open {
+      display: block;
+    }
+    .modal-texts {
+     background: #EAA9A9;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .modal-content img {
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      margin-left: 350px;
+      margin-top: 50px;
+    }
+    .modal-content h3 {
+      margin-top: 0;
+      font-family: "Space Mono", monospace;
+      font-size: 22px;
+    }
+    .modal-content p {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 22px;
+      text-align: justify;
+      margin-top: 0px;
+    }
+    .modal-back-btn {
+      margin-top: 20px;
+      padding: 10px 17px;
+      background: #946053;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      margin-left: 650px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .certificates-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    /*Contacts page*/
+.contact-box {
+  width: 90%;
+  background: #EAA9A9;
+  padding: 30px;
+  border-radius: 26px;
+  box-shadow: 6px 6px 12px rgba(0,0,0,0.15);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: #000;
+  text-align: center;  /* <-- Center all text inside */
+  margin-left: 80px;
+  margin-top: 50px;
+}
+
+.contact-box h2 {
+  margin-top: 0;
+  font-family: "Space Mono", monospace;
+  font-size: 32px;
+}
+
+.contact-box p {
+  font-size: 20px;
+  line-height: 1.6;
+  /* text-align: center; */ /* optional, already inherited from parent */
+}
