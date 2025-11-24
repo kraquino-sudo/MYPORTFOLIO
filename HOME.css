@@ -91,9 +91,9 @@ body{
   opacity:0.95;
 }
 .nav-btn.active{
-  background: none;
   color: #946053;
-  border-color: none;
+  background-color: transparent;
+  border-color: transparent;
 }
 
 /* Hero layout — responsive grid (left text, right image) */
